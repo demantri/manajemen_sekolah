@@ -18,13 +18,26 @@ class MasterdataController extends Controller
     public function form_siswa()
     {
         # code...
-        return view('masterdata.siswa.form');
+        $user = User_level::all();
+        return view('masterdata.siswa.form', compact('user'));
     }
 
     public function save_siswa(Request $request)
     {
         # code...
-        return redirect('/siswa');
+        Siswa::create($request->all());
+        return redirect('/siswa')->with('success', 'Data berhasil ditambahkan');
+    }
+
+    public function form_edit_siswa($id)
+    {
+        # code...
+        $user = User_level::all();
+        $siswa = Siswa::where('id', $id)->first();
+
+        // dd($siswa);
+
+        return view('masterdata.siswa.form_edit', compact('user', 'siswa'));
     }
 
     public function index_user()

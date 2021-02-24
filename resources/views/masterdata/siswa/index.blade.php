@@ -11,11 +11,20 @@
         <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
             <div class="card">
                 <div class="card-header d-flex">
-                    <h5 class="card-header-title">Tabel Siswa</h5>
+                    <h3 class="card-header-title">Tabel Siswa</h3>
                     <div class="toolbar ml-auto">
                         <a href="/siswa/add" class="btn btn-sm btn-primary">Tambah Data</a>
                     </div>
                 </div>
+                {{-- <div class="card-header"> --}}
+                    <div id="notif">
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
+                        @endif
+                    </div>
+                {{-- </div> --}}
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table">
@@ -41,9 +50,17 @@
                                 @foreach ($data as $item)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td>{{$item->user_level}}</td>
+                                        <td>{{$item->nis}}</td>
+                                        <td>{{$item->nama_lengkap}}</td>
+                                        <td>{{$item->tempat_lahir}}</td>
+                                        <td>{{$item->tanggal_lahir}}</td>
+                                        <td>{{$item->alamat}}</td>
+                                        <td>{{$item->kelas}}</td>
+                                        <td>{{$item->tahun_ajaran_awal}}</td>
+                                        <td>{{$item->status}}</td>
+                                        <td>{{$item->id_user}}</td>
                                         <td class="text-center">
-                                            <a href="" class="btn btn-sm btn-space btn-warning">Ubah</a>
+                                            <a href="/siswa/{{$item->id}}/edit" class="btn btn-sm btn-space btn-warning">Ubah</a>
                                             <a href="" class="btn btn-sm btn-space btn-secondary">Hapus</a>
                                         </td>
                                     </tr>

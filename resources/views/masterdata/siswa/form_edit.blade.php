@@ -34,8 +34,7 @@
                                 <div class="form-group row">
                                     <label for="nis" class="col-3 col-lg-2 col-form-label text-right">Nomor Induk Siswa</label>
                                     <div class="col-9 col-lg-10">
-                                        {{-- <input id="nik" type="number" min="0" required="" placeholder="Nomor Induk Siswa" class="form-control" name="nik" autocomplete="off"> --}}
-                                        <input type="text" id="nis" class="form-control" name="nis" placeholder="Nomor Induk Siswa" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+                                        <input type="text" id="nis" class="form-control" name="nis" placeholder="Nomor Induk Siswa" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" value="{{$siswa->nis}}">
                                         @if ($errors->has('nis'))
                                             <span class="text-danger">{{ $errors->first('nis') }}</span>
                                         @endif
@@ -45,7 +44,7 @@
                                 <div class="form-group row">
                                     <label for="nama_lengkap" class="col-3 col-lg-2 col-form-label text-right">Nama Lengkap</label>
                                     <div class="col-9 col-lg-10">
-                                        <input id="nama_lengkap" type="text" required="" placeholder="Nama Lengkap" class="form-control" name="nama_lengkap" autocomplete="off">
+                                        <input id="nama_lengkap" type="text" required="" placeholder="Nama Lengkap" class="form-control" name="nama_lengkap" autocomplete="off" value="{{$siswa->nama_lengkap}}">
                                         @if ($errors->has('nama_lengkap'))
                                             <span class="text-danger">{{ $errors->first('nama_lengkap') }}</span>
                                         @endif
@@ -55,7 +54,7 @@
                                 <div class="form-group row">
                                     <label for="tempat_lahir" class="col-3 col-lg-2 col-form-label text-right">Tempat Lahir</label>
                                     <div class="col-9 col-lg-10">
-                                        <input id="tempat_lahir" type="text" required="" placeholder="Tempat Lahir" class="form-control" name="tempat_lahir" autocomplete="off">
+                                        <input id="tempat_lahir" type="text" required="" placeholder="Tempat Lahir" class="form-control" name="tempat_lahir" autocomplete="off" value="{{$siswa->tempat_lahir}}">
                                         @if ($errors->has('tempat_lahir'))
                                             <span class="text-danger">{{ $errors->first('tempat_lahir') }}</span>
                                         @endif
@@ -65,7 +64,7 @@
                                 <div class="form-group row">
                                     <label for="tanggal_lahir" class="col-3 col-lg-2 col-form-label text-right">Tanggal Lahir</label>
                                     <div class="col-9 col-lg-10">
-                                        <input id="tanggal_lahir" type="date" required="" placeholder="Tanggal Lahir" class="form-control" name="tanggal_lahir" autocomplete="off">
+                                        <input id="tanggal_lahir" type="date" required="" placeholder="Tanggal Lahir" class="form-control" name="tanggal_lahir" autocomplete="off" value="{{$siswa->tanggal_lahir}}">
                                         @if ($errors->has('tanggal_lahir'))
                                             <span class="text-danger">{{ $errors->first('tanggal_lahir') }}</span>
                                         @endif
@@ -76,7 +75,7 @@
                                     <label for="alamat" class="col-3 col-lg-2 col-form-label text-right">Alamat</label>
                                     <div class="col-9 col-lg-10">
                                         {{-- <input id="alamat" type="text" required="" placeholder="Alamat lengkap" class="form-control" name="alamat" autocomplete="off"> --}}
-                                        <textarea name="alamat" id="alamat" cols="10" rows="5" class="form-control" placeholder="Alamat Lengkap" autocomplete="off"></textarea>
+                                        <textarea name="alamat" id="alamat" cols="10" rows="5" class="form-control" placeholder="Alamat Lengkap" autocomplete="off">{{htmlspecialchars($siswa->alamat)}}</textarea>
                                         @if ($errors->has('alamat'))
                                             <span class="text-danger">{{ $errors->first('alamat') }}</span>
                                         @endif
