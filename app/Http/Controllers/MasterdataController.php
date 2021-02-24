@@ -2,11 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use App\Models\User_level;
 use Illuminate\Http\Request;
 
 class MasterdataController extends Controller
 {
+
+    public function index_siswa()
+    {
+        $data = Siswa::all();
+        return view('masterdata.siswa.index', compact('data'));
+    }
+
+    public function form_siswa()
+    {
+        # code...
+        return view('masterdata.siswa.form');
+    }
 
     public function index_user()
     {

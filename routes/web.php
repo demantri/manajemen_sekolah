@@ -25,5 +25,6 @@ Route::get('/user', [MasterdataController::class, 'index_user']);
 Route::post('/user/save', [MasterdataController::class, 'save_user']);
 
 Route::get('/siswa', [MasterdataController::class, 'index_siswa']);
+Route::get('/siswa/add', [MasterdataController::class, 'form_siswa']);
 
 Route::get('/guru', [MasterdataController::class, 'index_guru']);
