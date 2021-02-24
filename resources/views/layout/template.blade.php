@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="{{ asset('template') }}/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="{{ asset('template') }}/assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="{{ asset('template') }}/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
+
+    <script src="{{ asset('template') }}/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+
     <title>Manajemen Sekolah - @yield('tab_name')</title>
 </head>
 
@@ -68,13 +71,15 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">E-commerce Dashboard Template </h2>
-                                <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
+                                <h2 class="pageheader-title">@yield('page-header-title')</h2>
+                                {{-- <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p> --}}
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">E-Commerce Dashboard Template</li>
+                                            <li class="breadcrumb-item">
+                                                <a href="#" class="breadcrumb-link">@yield('tab_menu')</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">@yield('sub_tab_menu')</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -85,7 +90,8 @@
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
                     {{-- widget here, moved to layout folder/files --}}
-                    @include('layout.widget')
+                    {{-- @include('layout.widget') --}}
+                    @yield('content')
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -120,7 +126,6 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <!-- jquery 3.3.1 -->
-    <script src="{{ asset('template') }}/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <!-- bootstap bundle js -->
     <script src="{{ asset('template') }}/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <!-- slimscroll js -->

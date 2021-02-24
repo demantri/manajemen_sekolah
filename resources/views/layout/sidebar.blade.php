@@ -1,6 +1,6 @@
 {{-- sidebar --}}
 <li class="nav-item">
-    <a class="nav-link" href="dashboard-sales.html"><i class="fa fa-fw fa-home"></i>Dashboard</a>
+    <a class="nav-link" href="/"><i class="fa fa-fw fa-home"></i>Dashboard</a>
 </li>
 
 <li class="nav-item ">
@@ -8,13 +8,13 @@
     <div id="submenu-1" class="collapse submenu" style="">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="dashboard-finance.html">Siswa</a>
+                <a class="nav-link" href="/siswa">Siswa</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="dashboard-sales.html">Guru</a>
+                <a class="nav-link" href="/guru">Guru</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="dashboard-sales.html">User</a>
+                <a class="nav-link" href="/user">User</a>
             </li>
         </ul>
     </div>
