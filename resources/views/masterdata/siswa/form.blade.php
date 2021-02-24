@@ -3,6 +3,7 @@
 @section('page-header-title', 'Masterdata')
 @section('tab_menu', 'Siswa')
 @section('sub_tab_menu', 'Form Siswa')
+@section('tab_name', 'Tambah Siswa')
 
 @section('content')
     <div class="row">
@@ -24,7 +25,7 @@
                         @endif
                     </div>
 
-                    <form id="form" data-parsley-validate="" novalidate="" method="POST" action="/user/save">
+                    <form id="form" data-parsley-validate="" novalidate="" method="POST" action="/siswa/save">
                         @csrf
 
                         <div class="row">
@@ -156,6 +157,7 @@
                             </div>
                             <div class="col-sm-6 pl-0">
                                 <p class="text-right">
+                                    <a href="/siswa" class="btn btn-space btn-sm btn-light">Kembali</a>
                                     <button type="submit" class="btn btn-space btn-success btn-sm">Simpan</button>
                                 </p>
                             </div>

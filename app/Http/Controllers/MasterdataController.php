@@ -21,6 +21,12 @@ class MasterdataController extends Controller
         return view('masterdata.siswa.form');
     }
 
+    public function save_siswa(Request $request)
+    {
+        # code...
+        return redirect('/siswa');
+    }
+
     public function index_user()
     {
         $data = User_level::all();
