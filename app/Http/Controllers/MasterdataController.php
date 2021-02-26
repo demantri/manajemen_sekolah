@@ -25,7 +25,25 @@ class MasterdataController extends Controller
     public function save_siswa(Request $request)
     {
         # code...
-        Siswa::create($request->all());
+        // Siswa::create($request->all());
+        // ubah disini
+        $path = $request->file('foto_siswa')->store('public/images');
+        // dd($path);
+
+        $siswa = new Siswa;
+
+        $siswa->nis = $request->nis;
+        $siswa->nama_lengkap = $request->nama_lengkap;
+        $siswa->tempat_lahir = $request->tempat_lahir;
+        $siswa->tanggal_lahir = $request->tanggal_lahir;
+        $siswa->alamat = $request->alamat;
+        $siswa->kelas = $request->kelas;
+        $siswa->status = $request->status;
+        $siswa->tahun_ajaran_awal = $request->tahun_ajaran_awal;
+        $siswa->id_user = $request->id_user;
+        $siswa->foto_siswa = $path;
+        $siswa->save();
+
         return redirect('/siswa')->with('success', 'Data berhasil ditambahkan');
     }
 

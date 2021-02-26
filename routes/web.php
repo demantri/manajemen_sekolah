@@ -28,7 +28,7 @@ Route::get('/siswa', [MasterdataController::class, 'index_siswa']);
 Route::get('/siswa/add', [MasterdataController::class, 'form_siswa']);
 Route::post('/siswa/save', [MasterdataController::class, 'save_siswa']);
 Route::get('/siswa/{id}/edit', [MasterdataController::class, 'form_edit_siswa']);
-Route::post('/siswa/save', [MasterdataController::class, 'update_siswa']);
-Route::post('/siswa/save', [MasterdataController::class, 'delete_siswa']);
+// Route::post('/siswa/save', [MasterdataController::class, 'update_siswa']);
+// Route::post('/siswa/save', [MasterdataController::class, 'delete_siswa']);
 
 Route::get('/guru', [MasterdataController::class, 'index_guru']);

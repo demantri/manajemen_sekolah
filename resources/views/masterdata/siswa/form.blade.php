@@ -25,7 +25,7 @@
                         @endif
                     </div>
 
-                    <form id="form" data-parsley-validate="" novalidate="" method="POST" action="/siswa/save">
+                    <form id="form" enctype="multipart/form-data" data-parsley-validate="" novalidate="" method="POST" action="/siswa/save">
                         @csrf
 
                         <div class="row">

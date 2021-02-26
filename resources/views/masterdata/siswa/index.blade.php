@@ -25,13 +25,15 @@
                         @endif
                     </div>
                 {{-- </div> --}}
-                <div class="card-body p-0">
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        {{-- <table class="table"> --}}
+                        <table class="table table-striped table-bordered first">
                             <thead class="bg-light">
                                 <tr class="border-10">
                                     <th>#</th>
                                     <th>NIS</th>
+                                    <th>Foto Siswa</th>
                                     <th>Nama Lengkap</th>
                                     <th>Tempat Lahir</th>
                                     <th>Tanggal Lahir</th>
@@ -51,6 +53,15 @@
                                     <tr>
                                         <td>{{$no++}}</td>
                                         <td>{{$item->nis}}</td>
+                                        <td class="text-center">
+                                            <div class="m-r-10">
+                                                @if (is_null($item->foto_siswa))
+                                                    <img src="{{asset('template/')}}/assets/images/avatar-null.png" alt="user" class="rounded" width="45">
+                                                @else
+                                                    <img src="{{ Storage::url($item->foto_siswa) }}" alt="user" class="rounded" width="45">
+                                                @endif
+                                            </div>
+                                        </td>
                                         <td>{{$item->nama_lengkap}}</td>
                                         <td>{{$item->tempat_lahir}}</td>
                                         <td>{{$item->tanggal_lahir}}</td>
@@ -60,8 +71,10 @@
                                         <td>{{$item->status}}</td>
                                         <td>{{$item->id_user}}</td>
                                         <td class="text-center">
-                                            <a href="/siswa/{{$item->id}}/edit" class="btn btn-sm btn-space btn-warning">Ubah</a>
-                                            <a href="" class="btn btn-sm btn-space btn-secondary">Hapus</a>
+                                            <div class="btn-group">
+                                                <a href="/siswa/{{$item->id}}/edit" class="btn btn-sm btn-space btn-warning">Ubah</a>
+                                                <a href="" class="btn btn-sm btn-space btn-secondary">Hapus</a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
