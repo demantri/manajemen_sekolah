@@ -25,14 +25,16 @@
                         @endif
                     </div>
 
-                    <form id="form" data-parsley-validate="" novalidate="" method="POST" action="/siswa/save">
+                    <form id="form" data-parsley-validate="" novalidate="" method="POST" action="/siswa/{{$siswa->id}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row">
                             {{-- form kiri --}}
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                <input type="hidden" value="{{$siswa->id}}">
+
                                 <div class="form-group row">
-                                    <label for="nis" class="col-3 col-lg-2 col-form-label text-right">Nomor Induk Siswa</label>
+                                    <label for="nis" class="col-3 col-lg-2 col-form-label text-right">NIS</label>
                                     <div class="col-9 col-lg-10">
                                         <input type="text" id="nis" class="form-control" name="nis" placeholder="Nomor Induk Siswa" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" value="{{$siswa->nis}}">
                                         @if ($errors->has('nis'))
@@ -74,7 +76,6 @@
                                 <div class="form-group row">
                                     <label for="alamat" class="col-3 col-lg-2 col-form-label text-right">Alamat</label>
                                     <div class="col-9 col-lg-10">
-                                        {{-- <input id="alamat" type="text" required="" placeholder="Alamat lengkap" class="form-control" name="alamat" autocomplete="off"> --}}
                                         <textarea name="alamat" id="alamat" cols="10" rows="5" class="form-control" placeholder="Alamat Lengkap" autocomplete="off">{{htmlspecialchars($siswa->alamat)}}</textarea>
                                         @if ($errors->has('alamat'))
                                             <span class="text-danger">{{ $errors->first('alamat') }}</span>
@@ -85,11 +86,10 @@
                                 <div class="form-group row">
                                     <label for="kelas" class="col-3 col-lg-2 col-form-label text-right">Kelas</label>
                                     <div class="col-9 col-lg-10">
-                                        {{-- <input id="kelas" type="text" required="" placeholder="Kelas" class="form-control" name="kelas" autocomplete="off"> --}}
                                         <select name="kelas" id="kelas" class="form-control">
                                             <option value="">Pilih Kelas</option>
                                             @for ($i = 1; $i <= 6; $i++)
-                                            <option value="{{$i}}">{{'Kelas'. '-' .$i}}</option>
+                                            <option value="{{$i}}" <?php if($siswa->kelas == $i){echo 'selected';}?>>{{'Kelas'. '-' .$i}}</option>
                                             @endfor
                                         </select>
                                         @if ($errors->has('kelas'))
@@ -105,8 +105,8 @@
                                     <div class="col-9 col-lg-10">
                                         <select name="tahun_ajaran_awal" id="tahun_ajaran_awal" class="form-control">
                                             <option value="">Pilih Tahun Ajaran</option>
-                                            @for ($i = date('Y'); $i <= date('Y'); $i++)
-                                            <option value="{{$i}}">{{ $i.'/'.date('Y', strtotime('1 year'))}}</option>
+                                            @for ($i = date('Y'); $i <= 2025; $i++)
+                                            <option value="{{$i}}"<?php if($siswa->tahun_ajaran_awal == $i){echo 'selected';}?>>{{ $i }}</option>
                                             @endfor
                                         </select>
                                         @if ($errors->has('tahun_ajaran_awal'))
@@ -121,9 +121,9 @@
                                         <select name="status" id="status" class="form-control">
                                             <option value="">Pilih Status</option>
                                             {{-- blm buat master nya --}}
-                                            <option value="1">Siswa Baru</option>
-                                            <option value="2">Siswa Pindahan</option>
-                                            <option value="3">Siswa Tidak Aktif</option>
+                                            <option value="1"<?php if($siswa->status == "1"){echo 'selected';}?>>Siswa Baru</option>
+                                            <option value="2"<?php if($siswa->status == "2"){echo 'selected';}?>>Siswa Pindahan</option>
+                                            <option value="3"<?php if($siswa->status == "3"){echo 'selected';}?>>Siswa Tidak Aktif</option>
                                         </select>
                                         @if ($errors->has('status'))
                                             <span class="text-danger">{{ $errors->first('status') }}</span>
@@ -137,7 +137,7 @@
                                         <select name="id_user" id="id_user" class="form-control">
                                             <option value="">Pilih User Level</option>
                                             @foreach ($user as $item)
-                                            <option value="{{$item->id}}">{{$item->user_level}}</option>
+                                            <option value="{{$item->id}}"<?php if($siswa->id_user == $item->id){echo 'selected';}?>>{{$item->user_level}}</option>
                                             @endforeach
                                         </select>
                                         @if ($errors->has('id_user'))
@@ -150,6 +150,12 @@
                                     <label for="foto_siswa" class="col-3 col-lg-2 col-form-label text-right">Foto Siswa</label>
                                     <div class="col-9 col-lg-10">
                                         <input id="foto_siswa" type="file" required="" placeholder="Foto Siswa" class="form-control" name="foto_siswa" autocomplete="off">
+                                        @if (is_null($siswa->foto_siswa))
+                                            <img style="padding-top: 15px" src="{{asset('template/')}}/assets/images/avatar-null.png" height="150" width="150" alt="" />
+                                        @else
+                                            <img style="padding-top: 15px" src="{{ Storage::url($siswa->foto_siswa) }}" height="150" width="150" alt="" />
+                                        @endif
+
                                         @if ($errors->has('foto_siswa'))
                                             <span class="text-danger">{{ $errors->first('foto_siswa') }}</span>
                                         @endif

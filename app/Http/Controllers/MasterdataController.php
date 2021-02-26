@@ -11,7 +11,11 @@ class MasterdataController extends Controller
 
     public function index_siswa()
     {
-        $data = Siswa::all();
+        // $data = Siswa::all();
+        $data = Siswa::select('siswa.*', 'user_level')
+        ->join('user', 'user.id', '=', 'siswa.id_user')
+        ->get();
+        // dd($data);
         return view('masterdata.siswa.index', compact('data'));
     }
 
@@ -56,6 +60,41 @@ class MasterdataController extends Controller
         // dd($siswa);
 
         return view('masterdata.siswa.form_edit', compact('user', 'siswa'));
+    }
+
+    public function update_siswa($id, Request $request)
+    {
+        # code...
+        $data = Siswa::find($id);
+        if ($request->hasFile('foto_siswa')) {
+            // validasi disini, tapi di komen dulu
+            // $request->validate([
+            //     'foto_siswa' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            // ]);
+            $path = $request->file('foto_siswa')->store('public/images');
+            $data->foto_siswa = $path;
+        }
+        $data->nis = $request->nis;
+        $data->nama_lengkap = $request->nama_lengkap;
+        $data->tempat_lahir = $request->tempat_lahir;
+        $data->tanggal_lahir = $request->tanggal_lahir;
+        $data->alamat = $request->alamat;
+        $data->kelas = $request->kelas;
+        $data->status = $request->status;
+        $data->tahun_ajaran_awal = $request->tahun_ajaran_awal;
+        $data->id_user = $request->id_user;
+        $data->save();
+
+        return redirect('/siswa')->with('success', 'Data berhasil diupdate.');
+    }
+
+    public function delete_siswa($id)
+    {
+        # code...
+        Siswa::where('id', $id)
+        ->delete();
+
+        return redirect('/siswa')->with('success', 'Data berhasil dihapus.');
     }
 
     public function index_user()

@@ -14,6 +14,15 @@
                 <a class="nav-link" href="/guru">Guru</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/kelas">Kelas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tahun_ajaran">Tahun Ajaran</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/status">Status</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/user">User</a>
             </li>
         </ul>

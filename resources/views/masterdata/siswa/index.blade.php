@@ -56,9 +56,9 @@
                                         <td class="text-center">
                                             <div class="m-r-10">
                                                 @if (is_null($item->foto_siswa))
-                                                    <img src="{{asset('template/')}}/assets/images/avatar-null.png" alt="user" class="rounded" width="45">
+                                                    <img src="{{asset('template/')}}/assets/images/avatar-null.png" alt="user" class="rounded" width="45" height="55">
                                                 @else
-                                                    <img src="{{ Storage::url($item->foto_siswa) }}" alt="user" class="rounded" width="45">
+                                                    <img src="{{ Storage::url($item->foto_siswa) }}" alt="user" class="rounded" width="45" height="55">
                                                 @endif
                                             </div>
                                         </td>
@@ -69,11 +69,11 @@
                                         <td>{{$item->kelas}}</td>
                                         <td>{{$item->tahun_ajaran_awal}}</td>
                                         <td>{{$item->status}}</td>
-                                        <td>{{$item->id_user}}</td>
+                                        <td>{{$item->user_level}}</td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <a href="/siswa/{{$item->id}}/edit" class="btn btn-sm btn-space btn-warning">Ubah</a>
-                                                <a href="" class="btn btn-sm btn-space btn-secondary">Hapus</a>
+                                                <a href="/siswa/delete/{{$item->id}}" onclick="return confirm('Data yang sudah dihapus, tidak dapat dikembalikan. Apakah yakin?')" class="btn btn-sm btn-space btn-secondary">Hapus</a>
                                             </div>
                                         </td>
                                     </tr>
