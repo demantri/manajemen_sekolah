@@ -101,12 +101,6 @@ class MasterdataController extends Controller
         return view('masterdata.kelas.index', compact('data'));
     }
 
-    // public function form_siswa()
-    // {
-    //     $user = User_level::all();
-    //     return view('masterdata.siswa.form', compact('user'));
-    // }
-
     public function save_kelas(Request $request)
     {
         # code...
@@ -118,47 +112,22 @@ class MasterdataController extends Controller
         return redirect('/kelas')->with('success', 'Data berhasil ditambahkan');
     }
 
-    // public function form_edit_siswa($id)
-    // {
-    //     $user = User_level::all();
-    //     $siswa = Siswa::where('id', $id)->first();
-    //     // dd($siswa);
+    public function update_kelas($id, Request $request)
+    {
+        $data = Kelas::find($id);
+        $data->kelas = $request->kelas;
+        $data->save();
 
-    //     return view('masterdata.siswa.form_edit', compact('user', 'siswa'));
-    // }
+        return redirect('/kelas')->with('success', 'Data berhasil diupdate.');
+    }
 
-    // public function update_siswa($id, Request $request)
-    // {
-    //     $data = Siswa::find($id);
-    //     if ($request->hasFile('foto_siswa')) {
-    //         // validasi disini, tapi di komen dulu
-    //         // $request->validate([
-    //         //     'foto_siswa' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-    //         // ]);
-    //         $path = $request->file('foto_siswa')->store('public/images');
-    //         $data->foto_siswa = $path;
-    //     }
-    //     $data->nis = $request->nis;
-    //     $data->nama_lengkap = $request->nama_lengkap;
-    //     $data->tempat_lahir = $request->tempat_lahir;
-    //     $data->tanggal_lahir = $request->tanggal_lahir;
-    //     $data->alamat = $request->alamat;
-    //     $data->kelas = $request->kelas;
-    //     $data->status = $request->status;
-    //     $data->tahun_ajaran_awal = $request->tahun_ajaran_awal;
-    //     $data->id_user = $request->id_user;
-    //     $data->save();
+    public function delete_kelas($id)
+    {
+        Kelas::where('id', $id)
+        ->delete();
 
-    //     return redirect('/siswa')->with('success', 'Data berhasil diupdate.');
-    // }
-
-    // public function delete_siswa($id)
-    // {
-    //     Siswa::where('id', $id)
-    //     ->delete();
-
-    //     return redirect('/siswa')->with('success', 'Data berhasil dihapus.');
-    // }
+        return redirect('/kelas')->with('success', 'Data berhasil dihapus.');
+    }
     // end kelas
 
     public function index_user()

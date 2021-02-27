@@ -34,9 +34,7 @@ Route::get('/siswa/delete/{id}', [MasterdataController::class, 'delete_siswa']);
 
 // kelas
 Route::get('/kelas', [MasterdataController::class, 'index_kelas']);
-Route::get('/kelas/add', [MasterdataController::class, 'form_kelas']);
 Route::post('/kelas/save', [MasterdataController::class, 'save_kelas']);
-Route::get('/kelas/{id}/edit', [MasterdataController::class, 'form_edit_kelas']);
 Route::post('/kelas/{id}', [MasterdataController::class, 'update_kelas']);
 Route::get('/kelas/delete/{id}', [MasterdataController::class, 'delete_kelas']);
 

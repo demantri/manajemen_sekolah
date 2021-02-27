@@ -12,7 +12,7 @@
                 <div class="card-header d-flex">
                     <h3 class="card-header-title">Tabel Kelas</h3>
                     <div class="toolbar ml-auto">
-                        <a href="/kelas/add" class="btn btn-sm btn-primary">Tambah Data</a>
+                        {{-- <a href="/kelas/add" class="btn btn-sm btn-primary">Tambah Data</a> --}}
                     </div>
                 </div>
                 {{-- <div class="card-header"> --}}
@@ -45,8 +45,8 @@
                                         <td>{{'Kelas'}} {{$item->kelas}}</td>
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                <a href="/siswa/{{$item->id}}/edit" data-toggle="modal" data-target="#modal-{{$item->id}}" class="btn btn-sm btn-space btn-warning">Ubah</a>
-                                                <a href="/siswa/delete/{{$item->id}}" onclick="return confirm('Data yang sudah dihapus, tidak dapat dikembalikan. Apakah yakin?')" class="btn btn-sm btn-space btn-secondary">Hapus</a>
+                                                <button data-toggle="modal" data-target="#modal-{{$item->id}}" class="btn btn-sm btn-space btn-warning">Ubah</button>
+                                                <a href="/kelas/delete/{{$item->id}}" onclick="return confirm('Data yang sudah dihapus, tidak dapat dikembalikan. Apakah yakin?')" class="btn btn-sm btn-space btn-secondary">Hapus</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -64,13 +64,6 @@
                     <h3 class="card-header-title">Form Kelas</h3>
                 </div>
                 <div class="card-body">
-                    <div id="notif">
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                <p>{{ $message }}</p>
-                            </div>
-                        @endif
-                    </div>
 
                     <form id="form" data-parsley-validate="" novalidate="" method="POST" action="/kelas/save">
                         @csrf
@@ -88,9 +81,7 @@
                         {{-- <hr> --}}
                         <div class="row pt-2 pt-sm-5 mt-1">
                             <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
-                                <label class="be-checkbox custom-control">
-                                    {{-- <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Remember me</span> --}}
-                                </label>
+                                <label class="be-checkbox custom-control"></label>
                             </div>
                             <div class="col-sm-6 pl-0">
                                 <p class="text-right">
