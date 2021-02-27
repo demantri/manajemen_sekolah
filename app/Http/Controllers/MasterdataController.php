@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Models\Status;
+use App\Models\TahunAjaran;
 use App\Models\User_level;
 use Illuminate\Http\Request;
 
@@ -129,6 +131,76 @@ class MasterdataController extends Controller
         return redirect('/kelas')->with('success', 'Data berhasil dihapus.');
     }
     // end kelas
+
+    // status
+    public function index_status()
+    {
+        $data = Status::all();
+        return view('masterdata.status.index', compact('data'));
+    }
+
+    public function save_status(Request $request)
+    {
+        $request->validate([
+            'status' => 'required|unique:status'
+        ]);
+
+        Status::create($request->all());
+        return redirect('/status')->with('success', 'Data berhasil ditambahkan');
+    }
+
+    public function update_status($id, Request $request)
+    {
+        $data = Status::find($id);
+        $data->status = $request->status;
+        $data->save();
+
+        return redirect('/status')->with('success', 'Data berhasil diupdate.');
+    }
+
+    public function delete_status($id)
+    {
+        Status::where('id', $id)
+        ->delete();
+
+        return redirect('/status')->with('success', 'Data berhasil dihapus.');
+    }
+    // end status
+
+    // tahun ajaran
+    public function index_tahun_ajaran()
+    {
+        $data = TahunAjaran::all();
+        return view('masterdata.tahun_ajaran.index', compact('data'));
+    }
+
+    public function save_tahun_ajaran(Request $request)
+    {
+        $request->validate([
+            'tahun_ajaran' => 'required|unique:tahun_ajaran'
+        ]);
+
+        TahunAjaran::create($request->all());
+        return redirect('/tahun_ajaran')->with('success', 'Data berhasil ditambahkan');
+    }
+
+    public function update_tahun_ajaran($id, Request $request)
+    {
+        $data = TahunAjaran::find($id);
+        $data->status = $request->status;
+        $data->save();
+
+        return redirect('/tahun_ajaran')->with('success', 'Data berhasil diupdate.');
+    }
+
+    public function delete_tahun_ajaran($id)
+    {
+        TahunAjaran::where('id', $id)
+        ->delete();
+
+        return redirect('/tahun_ajaran')->with('success', 'Data berhasil dihapus.');
+    }
+    // end tahun ajaran
 
     public function index_user()
     {

@@ -4,23 +4,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MasterdataController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 // Route::get('/', function () {
 //     return view('layout.template');
 // });
 
 Route::get('/', [DashboardController::class, 'index']);
-
 Route::get('/user', [MasterdataController::class, 'index_user']);
 Route::post('/user/save', [MasterdataController::class, 'save_user']);
 
@@ -37,6 +25,19 @@ Route::get('/kelas', [MasterdataController::class, 'index_kelas']);
 Route::post('/kelas/save', [MasterdataController::class, 'save_kelas']);
 Route::post('/kelas/{id}', [MasterdataController::class, 'update_kelas']);
 Route::get('/kelas/delete/{id}', [MasterdataController::class, 'delete_kelas']);
+
+// status
+Route::get('/status', [MasterdataController::class, 'index_status']);
+Route::post('/status/save', [MasterdataController::class, 'save_status']);
+Route::post('/status/{id}', [MasterdataController::class, 'update_status']);
+Route::get('/status/delete/{id}', [MasterdataController::class, 'delete_status']);
+
+// tahun_ajaran
+Route::get('/tahun_ajaran', [MasterdataController::class, 'index_tahun_ajaran']);
+Route::post('/tahun_ajaran/save', [MasterdataController::class, 'save_tahun_ajaran']);
+Route::post('/tahun_ajaran/{id}', [MasterdataController::class, 'update_tahun_ajaran']);
+Route::get('/tahun_ajaran/delete/{id}', [MasterdataController::class, 'delete_tahun_ajaran']);
+
 
 
 Route::get('/guru', [MasterdataController::class, 'index_guru']);
