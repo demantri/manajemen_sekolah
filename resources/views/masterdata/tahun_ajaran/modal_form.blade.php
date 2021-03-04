@@ -22,6 +22,13 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <label for="biaya" class="col-3 col-lg-3 col-form-label text-right">Biaya</label>
+                        <div class="col-9 col-lg-9">
+                            <input id="biaya" type="text" name="biaya" required="" class="form-control" value="{{$item->biaya}}" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Batalkan</button>

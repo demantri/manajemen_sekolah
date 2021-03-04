@@ -31,6 +31,7 @@
                                 <tr class="border-10">
                                     <th style="width:15px">#</th>
                                     <th>Tahun Ajaran Siswa</th>
+                                    <th>Biaya per-bulan</th>
                                     <th style="width:15px" class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -42,6 +43,7 @@
                                     <tr>
                                         <td>{{$no++}}</td>
                                         <td>{{$item->tahun_ajaran}}</td>
+                                        <td>@currency($item->biaya)</td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button data-toggle="modal" data-target="#modal-{{$item->id}}" class="btn btn-sm btn-space btn-warning">Ubah</button>
@@ -73,6 +75,16 @@
                                 <input id="tahun_ajaran" type="text" required="" placeholder="ex: 2019/2020" class="form-control" name="tahun_ajaran" autocomplete="off">
                                 @if ($errors->has('tahun_ajaran'))
                                     <span class="text-danger">{{ $errors->first('tahun_ajaran') }}</span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="biaya" class="col-3 col-lg-3 col-form-label text-right">Biaya</label>
+                            <div class="col-9 col-lg-9">
+                                <input id="biaya" type="text" required="" placeholder="Spp/biaya tahun ini" class="form-control" name="biaya" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                @if ($errors->has('biaya'))
+                                    <span class="text-danger">{{ $errors->first('biaya') }}</span>
                                 @endif
                             </div>
                         </div>

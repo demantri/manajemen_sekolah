@@ -177,7 +177,8 @@ class MasterdataController extends Controller
     public function save_tahun_ajaran(Request $request)
     {
         $request->validate([
-            'tahun_ajaran' => 'required|unique:tahun_ajaran'
+            'tahun_ajaran' => 'required|unique:tahun_ajaran|max:4',
+            'biaya' => 'required|numeric'
         ]);
 
         TahunAjaran::create($request->all());
@@ -187,7 +188,9 @@ class MasterdataController extends Controller
     public function update_tahun_ajaran($id, Request $request)
     {
         $data = TahunAjaran::find($id);
-        $data->status = $request->status;
+
+        $data->tahun_ajaran = $request->tahun_ajaran;
+        $data->biaya = $request->biaya;
         $data->save();
 
         return redirect('/tahun_ajaran')->with('success', 'Data berhasil diupdate.');
