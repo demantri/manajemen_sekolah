@@ -74,6 +74,16 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label for="no_telp_siswa" class="col-3 col-lg-2 col-form-label text-right">No. Telp Siswa</label>
+                                    <div class="col-9 col-lg-10">
+                                        <input id="no_telp_siswa" type="text" required="" placeholder="No. Telp Siswa" class="form-control" name="no_telp_siswa" autocomplete="off" value="{{$siswa->no_telp_siswa}}">
+                                        @if ($errors->has('no_telp_siswa'))
+                                            <span class="text-danger">{{ $errors->first('no_telp_siswa') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label for="alamat" class="col-3 col-lg-2 col-form-label text-right">Alamat</label>
                                     <div class="col-9 col-lg-10">
                                         <textarea name="alamat" id="alamat" cols="10" rows="5" class="form-control" placeholder="Alamat Lengkap" autocomplete="off">{{htmlspecialchars($siswa->alamat)}}</textarea>
@@ -83,17 +93,38 @@
                                     </div>
                                 </div>
 
+                                <hr>
+
                                 <div class="form-group row">
-                                    <label for="kelas" class="col-3 col-lg-2 col-form-label text-right">Kelas</label>
-                                    <div class="col-9 col-lg-10">
-                                        <select name="kelas" id="kelas" class="form-control">
-                                            <option value="">Pilih Kelas</option>
-                                            @for ($i = 1; $i <= 6; $i++)
-                                            <option value="{{$i}}" <?php if($siswa->kelas == $i){echo 'selected';}?>>{{'Kelas'. '-' .$i}}</option>
-                                            @endfor
-                                        </select>
-                                        @if ($errors->has('kelas'))
-                                            <span class="text-danger">{{ $errors->first('kelas') }}</span>
+                                    <label for="nama_ayah" class="col-3 col-lg-2 col-form-label text-right">Orang tua</label>
+                                    <div class="col-9 col-lg-5">
+                                        <input id="nama_ayah" type="text" required="" placeholder="Nama Ayah" class="form-control" name="nama_ayah" autocomplete="off" value="{{$siswa->nama_ayah}}">
+                                        @if ($errors->has('nama_ayah'))
+                                            <span class="text-danger">{{ $errors->first('nama_ayah') }}</span>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-9 col-lg-5">
+                                        <input id="nama_ibu" type="text" required="" placeholder="Nama Ibu" class="form-control" name="nama_ibu" autocomplete="off" value="{{$siswa->nama_ibu}}">
+                                        @if ($errors->has('nama_ibu'))
+                                            <span class="text-danger">{{ $errors->first('nama_ibu') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="no_telp_ayah" class="col-3 col-lg-2 col-form-label text-right">No. Telp</label>
+                                    <div class="col-9 col-lg-5">
+                                        <input id="no_telp_ayah" type="text" required="" placeholder="No. Telp Ayah" class="form-control" name="no_telp_ayah" autocomplete="off" value="{{$siswa->no_telp_ayah}}">
+                                        @if ($errors->has('no_telp_ayah'))
+                                            <span class="text-danger">{{ $errors->first('no_telp_ayah') }}</span>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-9 col-lg-5">
+                                        <input id="no_telp_ibu" type="text" required="" placeholder="No. Telp Ibu" class="form-control" name="no_telp_ibu" autocomplete="off" value="{{$siswa->no_telp_ibu}}">
+                                        @if ($errors->has('no_telp_ibu'))
+                                            <span class="text-danger">{{ $errors->first('no_telp_ibu') }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -101,13 +132,30 @@
                             {{-- form kanan --}}
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                 <div class="form-group row">
+                                    <label for="kelas" class="col-3 col-lg-2 col-form-label text-right">Kelas</label>
+                                    <div class="col-9 col-lg-10">
+                                        <select name="id_kelas" id="kelas" class="form-control">
+                                            <option value="">Pilih Kelas</option>
+                                            @foreach ($kelas as $item)
+                                            <option value="{{$item->id}}"
+                                                <?php if($siswa->id_kelas == $item->id){echo 'selected';}?>>Kelas {{$item->kelas}}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('kelas'))
+                                            <span class="text-danger">{{ $errors->first('kelas') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label for="tahun_ajaran_awal" class="col-3 col-lg-2 col-form-label text-right">Tahun Ajaran</label>
                                     <div class="col-9 col-lg-10">
-                                        <select name="tahun_ajaran_awal" id="tahun_ajaran_awal" class="form-control">
+                                        <select name="id_tahun_ajaran_awal" id="tahun_ajaran_awal" class="form-control">
                                             <option value="">Pilih Tahun Ajaran</option>
-                                            @for ($i = date('Y'); $i <= 2025; $i++)
-                                            <option value="{{$i}}"<?php if($siswa->tahun_ajaran_awal == $i){echo 'selected';}?>>{{ $i }}</option>
-                                            @endfor
+                                            @foreach ($tahun_ajaran as $item)
+                                            <option value="{{$item->id}}"
+                                                <?php if($siswa->id_tahun_ajaran_awal == $item->id){echo 'selected';}?>>{{$item->tahun_ajaran}}</option>
+                                            @endforeach
                                         </select>
                                         @if ($errors->has('tahun_ajaran_awal'))
                                             <span class="text-danger">{{ $errors->first('tahun_ajaran_awal') }}</span>
@@ -118,12 +166,12 @@
                                 <div class="form-group row">
                                     <label for="status" class="col-3 col-lg-2 col-form-label text-right">Status</label>
                                     <div class="col-9 col-lg-10">
-                                        <select name="status" id="status" class="form-control">
+                                        <select name="id_status" id="status" class="form-control">
                                             <option value="">Pilih Status</option>
-                                            {{-- blm buat master nya --}}
-                                            <option value="1"<?php if($siswa->status == "1"){echo 'selected';}?>>Siswa Baru</option>
-                                            <option value="2"<?php if($siswa->status == "2"){echo 'selected';}?>>Siswa Pindahan</option>
-                                            <option value="3"<?php if($siswa->status == "3"){echo 'selected';}?>>Siswa Tidak Aktif</option>
+                                            @foreach ($status as $item)
+                                            <option value="{{$item->id}}"
+                                                <?php if($siswa->id_status == $item->id){echo 'selected';}?>>{{$item->status}}</option>
+                                            @endforeach
                                         </select>
                                         @if ($errors->has('status'))
                                             <span class="text-danger">{{ $errors->first('status') }}</span>

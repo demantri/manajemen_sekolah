@@ -73,11 +73,16 @@ class MasterdataController extends Controller
 
     public function form_edit_siswa($id)
     {
+        // ambil data dari master
         $user = User_level::all();
+        $status = Status::all();
+        $kelas = Kelas::all();
+        $tahun_ajaran = TahunAjaran::all();
+
+        // get id
         $siswa = Siswa::where('id', $id)->first();
         // dd($siswa);
-
-        return view('masterdata.siswa.form_edit', compact('user', 'siswa'));
+        return view('masterdata.siswa.form_edit', compact('user', 'siswa', 'kelas', 'status', 'tahun_ajaran'));
     }
 
     public function update_siswa($id, Request $request)
@@ -96,10 +101,15 @@ class MasterdataController extends Controller
         $data->tempat_lahir = $request->tempat_lahir;
         $data->tanggal_lahir = $request->tanggal_lahir;
         $data->alamat = $request->alamat;
-        $data->kelas = $request->kelas;
-        $data->status = $request->status;
-        $data->tahun_ajaran_awal = $request->tahun_ajaran_awal;
+        $data->id_kelas = $request->id_kelas;
+        $data->id_status = $request->id_status;
+        $data->id_tahun_ajaran_awal = $request->id_tahun_ajaran_awal;
         $data->id_user = $request->id_user;
+        $data->no_telp_siswa = $request->no_telp_siswa;
+        $data->nama_ayah = $request->nama_ayah;
+        $data->nama_ibu = $request->nama_ibu;
+        $data->no_telp_ayah = $request->no_telp_ayah;
+        $data->no_telp_ibu = $request->no_telp_ibu;
         $data->save();
 
         return redirect('/siswa')->with('success', 'Data berhasil diupdate.');
