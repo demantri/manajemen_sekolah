@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\MasterdataController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,3 +42,7 @@ Route::get('/tahun_ajaran/delete/{id}', [MasterdataController::class, 'delete_ta
 
 
 Route::get('/guru', [MasterdataController::class, 'index_guru']);
+
+
+Route::get('/event', [EventController::class, 'index']);
+Route::get('/agenda', [EventController::class, 'data']);

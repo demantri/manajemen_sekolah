@@ -533,7 +533,8 @@ tr:first-child > td > .fc-day-grid-event {
   overflow: hidden; color: #fff; }
 
 .fc-day-grid-event .fc-time {
-  font-weight: bold; }
+  font-weight: bold;
+ }
 
 /* resizer (cursor devices) */
 /* left resizer  */

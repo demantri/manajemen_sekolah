@@ -21,6 +21,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/assets/vendor/datatables/css/select.bootstrap4.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
 
+    <link href='{{ asset("template") }}/assets/vendor/full-calendar/css/fullcalendar.css' rel='stylesheet' />
+    <link href='{{ asset("template") }}/assets/vendor/full-calendar/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+
     <script src="{{ asset('template') }}/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
 
     <title>Manajemen Sekolah - @yield('tab_name')</title>
@@ -165,6 +168,11 @@
     <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
     <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+
+    <script src='{{ asset("template") }}/assets/vendor/full-calendar/js/moment.min.js'></script>
+    <script src='{{ asset("template") }}/assets/vendor/full-calendar/js/fullcalendar.js'></script>
+    <script src='{{ asset("template") }}/assets/vendor/full-calendar/js/jquery-ui.min.js'></script>
+    {{-- <script src='{{ asset("template") }}/assets/vendor/full-calendar/js/calendar.js'></script> --}}
 
 </body>
 
