@@ -67,8 +67,14 @@
                                         <td>{{$item->tanggal_lahir}}</td>
                                         <td>{{$item->alamat}}</td>
                                         <td>{{$item->kelas}}</td>
-                                        <td>{{$item->tahun_ajaran_awal}}</td>
-                                        <td>{{$item->status}}</td>
+                                        <td>{{$item->tahun_ajaran}}</td>
+                                        <td>
+                                            @if ($item->id_status == 1)
+                                            <span class="badge-dot badge-success mr-1"></span>{{$item->status}}
+                                            @else
+                                            <span class="badge-dot badge-warning mr-1"></span>{{$item->status}}
+                                            @endif
+                                        </td>
                                         <td>{{$item->user_level}}</td>
                                         <td class="text-center">
                                             <div class="btn-group">

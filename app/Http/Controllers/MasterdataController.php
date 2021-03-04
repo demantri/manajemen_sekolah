@@ -15,8 +15,11 @@ class MasterdataController extends Controller
     public function index_siswa()
     {
         // $data = Siswa::all();
-        $data = Siswa::select('siswa.*', 'user_level')
+        $data = Siswa::select('siswa.*', 'user_level', 'tahun_ajaran', 'kelas', 'status', 'status.id as id_status')
         ->join('user', 'user.id', '=', 'siswa.id_user')
+        ->join('kelas', 'siswa.id_kelas', '=', 'kelas.id')
+        ->join('status', 'siswa.id_status', '=', 'status.id')
+        ->join('tahun_ajaran', 'siswa.id_tahun_ajaran_awal', '=', 'tahun_ajaran.id')
         ->get();
         // dd($data);
         return view('masterdata.siswa.index', compact('data'));
@@ -24,8 +27,12 @@ class MasterdataController extends Controller
 
     public function form_siswa()
     {
+        $status = Status::all();
+        $kelas = Kelas::all();
+        $tahun_ajaran = TahunAjaran::all();
         $user = User_level::all();
-        return view('masterdata.siswa.form', compact('user'));
+
+        return view('masterdata.siswa.form', compact('user', 'status', 'kelas', 'tahun_ajaran'));
     }
 
     public function save_siswa(Request $request)
@@ -33,8 +40,14 @@ class MasterdataController extends Controller
         # code...
         // Siswa::create($request->all());
         // ubah disini
-        $path = $request->file('foto_siswa')->store('public/images');
-        // dd($path);
+        // $path = $request->file('foto_siswa')->store('public/images');
+
+        // validasi dulu kalo null, sementara
+        if ($request->file('foto_siswa') == null) {
+            $path = null ;
+        } else {
+            $path = $request->file('foto_siswa')->store('public/images');
+        }
         $siswa = new Siswa;
 
         $siswa->nis = $request->nis;
@@ -42,11 +55,17 @@ class MasterdataController extends Controller
         $siswa->tempat_lahir = $request->tempat_lahir;
         $siswa->tanggal_lahir = $request->tanggal_lahir;
         $siswa->alamat = $request->alamat;
-        $siswa->kelas = $request->kelas;
-        $siswa->status = $request->status;
-        $siswa->tahun_ajaran_awal = $request->tahun_ajaran_awal;
+        $siswa->id_kelas = $request->id_kelas;
+        $siswa->id_status = $request->id_status;
+        $siswa->id_tahun_ajaran_awal = $request->id_tahun_ajaran_awal;
         $siswa->id_user = $request->id_user;
         $siswa->foto_siswa = $path;
+        $siswa->no_telp_siswa = $request->no_telp_siswa;
+        $siswa->nama_ayah = $request->nama_ayah;
+        $siswa->nama_ibu = $request->nama_ibu;
+        $siswa->no_telp_ayah = $request->no_telp_ayah;
+        $siswa->no_telp_ibu = $request->no_telp_ibu;
+
         $siswa->save();
 
         return redirect('/siswa')->with('success', 'Data berhasil ditambahkan');

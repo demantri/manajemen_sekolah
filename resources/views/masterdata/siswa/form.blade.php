@@ -34,7 +34,6 @@
                                 <div class="form-group row">
                                     <label for="nis" class="col-3 col-lg-2 col-form-label text-right">Nomor Induk Siswa</label>
                                     <div class="col-9 col-lg-10">
-                                        {{-- <input id="nik" type="number" min="0" required="" placeholder="Nomor Induk Siswa" class="form-control" name="nik" autocomplete="off"> --}}
                                         <input type="text" id="nis" class="form-control" name="nis" placeholder="Nomor Induk Siswa" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
                                         @if ($errors->has('nis'))
                                             <span class="text-danger">{{ $errors->first('nis') }}</span>
@@ -73,9 +72,18 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label for="no_telp_siswa" class="col-3 col-lg-2 col-form-label text-right">No. Telp Siswa</label>
+                                    <div class="col-9 col-lg-10">
+                                        <input id="no_telp_siswa" type="text" required="" placeholder="No. Telp Siswa" class="form-control" name="no_telp_siswa" autocomplete="off">
+                                        @if ($errors->has('no_telp_siswa'))
+                                            <span class="text-danger">{{ $errors->first('no_telp_siswa') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label for="alamat" class="col-3 col-lg-2 col-form-label text-right">Alamat</label>
                                     <div class="col-9 col-lg-10">
-                                        {{-- <input id="alamat" type="text" required="" placeholder="Alamat lengkap" class="form-control" name="alamat" autocomplete="off"> --}}
                                         <textarea name="alamat" id="alamat" cols="10" rows="5" class="form-control" placeholder="Alamat Lengkap" autocomplete="off"></textarea>
                                         @if ($errors->has('alamat'))
                                             <span class="text-danger">{{ $errors->first('alamat') }}</span>
@@ -83,32 +91,68 @@
                                     </div>
                                 </div>
 
+                                <hr>
+
+                                <div class="form-group row">
+                                    <label for="nama_ayah" class="col-3 col-lg-2 col-form-label text-right">Orang tua</label>
+                                    <div class="col-9 col-lg-5">
+                                        <input id="nama_ayah" type="text" required="" placeholder="Nama Ayah" class="form-control" name="nama_ayah" autocomplete="off">
+                                        @if ($errors->has('nama_ayah'))
+                                            <span class="text-danger">{{ $errors->first('nama_ayah') }}</span>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-9 col-lg-5">
+                                        <input id="nama_ibu" type="text" required="" placeholder="Nama Ibu" class="form-control" name="nama_ibu" autocomplete="off">
+                                        @if ($errors->has('nama_ibu'))
+                                            <span class="text-danger">{{ $errors->first('nama_ibu') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="no_telp_ayah" class="col-3 col-lg-2 col-form-label text-right">No. Telp</label>
+                                    <div class="col-9 col-lg-5">
+                                        <input id="no_telp_ayah" type="text" required="" placeholder="No. Telp Ayah" class="form-control" name="no_telp_ayah" autocomplete="off">
+                                        @if ($errors->has('no_telp_ayah'))
+                                            <span class="text-danger">{{ $errors->first('no_telp_ayah') }}</span>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-9 col-lg-5">
+                                        <input id="no_telp_ibu" type="text" required="" placeholder="No. Telp Ibu" class="form-control" name="no_telp_ibu" autocomplete="off">
+                                        @if ($errors->has('no_telp_ibu'))
+                                            <span class="text-danger">{{ $errors->first('no_telp_ibu') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- form kanan --}}
+
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                 <div class="form-group row">
                                     <label for="kelas" class="col-3 col-lg-2 col-form-label text-right">Kelas</label>
                                     <div class="col-9 col-lg-10">
-                                        {{-- <input id="kelas" type="text" required="" placeholder="Kelas" class="form-control" name="kelas" autocomplete="off"> --}}
-                                        <select name="kelas" id="kelas" class="form-control">
+                                        <select name="id_kelas" id="kelas" class="form-control">
                                             <option value="">Pilih Kelas</option>
-                                            @for ($i = 1; $i <= 6; $i++)
-                                            <option value="{{$i}}">{{'Kelas'. '-' .$i}}</option>
-                                            @endfor
+                                            @foreach ($kelas as $item)
+                                            <option value="{{$item->id}}">Kelas {{$item->kelas}}</option>
+                                            @endforeach
                                         </select>
                                         @if ($errors->has('kelas'))
                                             <span class="text-danger">{{ $errors->first('kelas') }}</span>
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            {{-- form kanan --}}
-                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+
                                 <div class="form-group row">
                                     <label for="tahun_ajaran_awal" class="col-3 col-lg-2 col-form-label text-right">Tahun Ajaran</label>
                                     <div class="col-9 col-lg-10">
-                                        <select name="tahun_ajaran_awal" id="tahun_ajaran_awal" class="form-control">
+                                        <select name="id_tahun_ajaran_awal" id="tahun_ajaran_awal" class="form-control">
                                             <option value="">Pilih Tahun Ajaran</option>
-                                            @for ($i = date('Y'); $i <= date('Y'); $i++)
-                                            <option value="{{$i}}">{{ $i.'/'.date('Y', strtotime('1 year'))}}</option>
-                                            @endfor
+                                            @foreach ($tahun_ajaran as $item)
+                                            <option value="{{$item->id}}">{{$item->tahun_ajaran}}</option>
+                                            @endforeach
                                         </select>
                                         @if ($errors->has('tahun_ajaran_awal'))
                                             <span class="text-danger">{{ $errors->first('tahun_ajaran_awal') }}</span>
@@ -119,12 +163,11 @@
                                 <div class="form-group row">
                                     <label for="status" class="col-3 col-lg-2 col-form-label text-right">Status</label>
                                     <div class="col-9 col-lg-10">
-                                        <select name="status" id="status" class="form-control">
+                                        <select name="id_status" id="status" class="form-control">
                                             <option value="">Pilih Status</option>
-                                            {{-- blm buat master nya --}}
-                                            <option value="1">Siswa Baru</option>
-                                            <option value="2">Siswa Pindahan</option>
-                                            <option value="3">Siswa Tidak Aktif</option>
+                                            @foreach ($status as $item)
+                                            <option value="{{$item->id}}">{{$item->status}}</option>
+                                            @endforeach
                                         </select>
                                         @if ($errors->has('status'))
                                             <span class="text-danger">{{ $errors->first('status') }}</span>
