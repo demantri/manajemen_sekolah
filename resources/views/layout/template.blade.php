@@ -21,6 +21,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/assets/vendor/datatables/css/select.bootstrap4.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/assets/vendor/bootstrap-select/css/bootstrap-select.css">
+
     <link href='{{ asset("template") }}/assets/vendor/full-calendar/css/fullcalendar.css' rel='stylesheet' />
     <link href='{{ asset("template") }}/assets/vendor/full-calendar/css/fullcalendar.print.css' rel='stylesheet' media='print' />
 
@@ -172,6 +174,8 @@
     <script src='{{ asset("template") }}/assets/vendor/full-calendar/js/moment.min.js'></script>
     <script src='{{ asset("template") }}/assets/vendor/full-calendar/js/fullcalendar.js'></script>
     <script src='{{ asset("template") }}/assets/vendor/full-calendar/js/jquery-ui.min.js'></script>
+
+    <script src='{{ asset("template") }}/assets/vendor/bootstrap-select/js/bootstrap-select.js'></script>
     {{-- <script src='{{ asset("template") }}/assets/vendor/full-calendar/js/calendar.js'></script> --}}
 
 </body>

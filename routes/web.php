@@ -3,11 +3,15 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MasterdataController;
+use App\Http\Controllers\AbsensiController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //     return view('layout.template');
 // });
+
+Route::get('/absensi_pegawai', [AbsensiController::class, 'absensi_pegawai'])->name('absensi_pegawai');
+Route::get('/absensi_murid', [AbsensiController::class, 'absensi_murid'])->name('absensi_murid');
 
 Route::get('/', [DashboardController::class, 'index']);
 Route::get('/user', [MasterdataController::class, 'index_user']);

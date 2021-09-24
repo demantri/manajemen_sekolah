@@ -7,6 +7,24 @@
     <a class="nav-link" href="/event"><i class="fa fa-fw fa-calendar"></i>Event</a>
 </li>
 
+{{-- <li class="nav-item">
+    <a class="nav-link" href={{route('absensi')}}><i class="fa fa-fw fa-calendar"></i>Absensi</a>
+</li> --}}
+
+<li class="nav-item ">
+    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#absensi-1" aria-controls="absensi-1"><i class="fa fa-fw fa-user-circle"></i>Absensi <span class="badge badge-success">6</span></a>
+    <div id="absensi-1" class="collapse absensi" style="">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('absensi_pegawai')}}">Absensi Pegawai</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('absensi_murid')}}">Absensi Murid</a>
+            </li>
+        </ul>
+    </div>
+</li>
+
 
 <li class="nav-item ">
     <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Masterdata <span class="badge badge-success">6</span></a>
